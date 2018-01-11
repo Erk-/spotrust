@@ -1,3 +1,5 @@
+use std::time::{Duration, SystemTime};
+
 #[allow(dead_code)]
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyGetToken {
@@ -16,6 +18,7 @@ pub struct SpotifyToken {
     pub cs: String,
 }
 
+#[derive(Clone, Debug)]
 pub enum UriType {
     Track,
     Album,
@@ -162,8 +165,9 @@ pub struct SpotifyFollowers {
     pub href: String,
     pub total: usize,
 }
-
-/* NOT IMPLEMENTED!
+/*
+// NOT IMPLEMENTED!
+/*
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyPaging {
 }
@@ -177,11 +181,12 @@ pub struct SpotifyPlaylist {
     pub id: String,
     pub images: Vec<SpotifyImage>,
     pub name: String,
-    pub owner: SpotifyUser,
+    pub owner: SpotifyUser, // TODO: SpotifyUser
     pub public: Option<bool>,
     pub snapshot_id: String,
-    pub tracks: SpotifyTracks,
+    pub tracks: SpotifyTracks, // TODO: SpotifyTracks
     #[serde(rename = "type")]
     pub type_: String,
     pub uri: String,
 }
+*/

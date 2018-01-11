@@ -1,3 +1,5 @@
+use model::*;
+
 pub fn uri_from_str(s: String) -> SpotifyURI {
     let v: Vec<&str> = s.split(':').collect();
     let t: UriType = match v[1] {
@@ -14,7 +16,7 @@ pub fn uri_from_str(s: String) -> SpotifyURI {
     ret
 }
 
-fn get_key(key: usize) -> Option<String> {
+pub fn get_key(key: usize) -> Option<String> {
     match key {
         0 => Some(String::from("C")),
         1 => Some(String::from("C♯/D♭")),
@@ -32,7 +34,7 @@ fn get_key(key: usize) -> Option<String> {
     }
 }
 
-fn get_mode(mode: usize) -> Option<String> {
+pub fn get_mode(mode: usize) -> Option<String> {
     match mode {
         1 => Some(String::from("Minor")),
         0 => Some(String::from("Major")),

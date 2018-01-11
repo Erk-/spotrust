@@ -1,4 +1,9 @@
-mod model;
+extern crate reqwest;
+
+use reqwest::header::{Headers, UserAgent}; // , ContentType, Bearer, Authorization
+use std::time::{Duration, SystemTime};
+use model::*;
+use base64;
 
 fn construct_headers_auth(cid: &String, cs: &String) -> Headers {
     let mut headers = Headers::new();
@@ -37,7 +42,7 @@ pub fn token_get_client(client: reqwest::Client, cid: String, cs: String) -> Spo
     token
 }
 
-fn token_update(t: SpotifyToken) -> SpotifyToken {
+pub fn token_update(t: SpotifyToken) -> SpotifyToken {
     let sys_time = SystemTime::now();
     let difference = sys_time.duration_since(t.toi).expect(
         "SystemTime::duration_since failed",
