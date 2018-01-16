@@ -1,6 +1,6 @@
 extern crate reqwest;
 
-use reqwest::header::{Headers, UserAgent}; // , ContentType, Bearer, Authorization
+use reqwest::header::{Headers, UserAgent};
 use std::time::{Duration, SystemTime};
 use model::*;
 use base64;
