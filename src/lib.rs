@@ -26,19 +26,9 @@ fn construct_headers_token(t: SpotifyToken) -> Headers {
     headers
 }
 
-pub fn track_get(client: &reqwest::Client, t: SpotifyToken, id: SpotifyURI) -> SpotifyTrackFull {
-    let url = format!("https://api.spotify.com/v1/tracks/{}", id.uri);
-    let res = client
-        .get(url.as_str())
-        .headers(construct_headers_token(t))
-        .send();
-    let mut resp = match res {
-        Ok(resp) => resp,
-        Err(why) => panic!("Err: {}", why),
-    };
-    let jres: SpotifyTrackFull = resp.json().unwrap();
-    jres
-}
+pub mod track;
+pub use track::*;
+
 
 /*
 fn main() {
