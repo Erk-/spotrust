@@ -1,4 +1,5 @@
 use std::time::{Duration, SystemTime};
+use std::fmt;
 
 #[allow(dead_code)]
 #[allow(non_snake_case)]
@@ -140,6 +141,11 @@ pub struct SpotifyAudioFeatures {
     pub type_: String,
     pub uri: String,
     pub valence: f64,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SpotifySeveralAudioFeatures {
+    pub audio_features: Vec<Option<SpotifyAudioFeatures>>,
 }
 
 // DONE https://developer.spotify.com/web-api/object-model/#category-object
@@ -359,6 +365,11 @@ pub struct SpotifyTrackFull {
     pub uri: String,
 }
 
+#[derive(Clone, Debug, Deserialize)]
+pub struct SpotifyTracks {
+    pub tracks: Vec<Option<SpotifyTrackFull>>,
+}
+
 // DONE https://developer.spotify.com/web-api/object-model/#track-object-simplified
 #[allow(dead_code)]
 #[allow(non_snake_case)]
@@ -448,3 +459,147 @@ pub struct SpotifyContext {
     pub uri: String,
 }
 
+// UNDOCUMENTED
+
+// https://developer.spotify.com/web-api/get-audio-analysis/
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SpotifyAudioAnalysisFeature {
+    pub start: f64,
+    pub duration: f64,
+    pub confidence: f64,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SpotifyAudioAnalysisMeta {
+    pub analyzer_version: String,
+    pub platform: String,
+    pub detailed_status: String,
+    pub status_code: usize,
+    pub timestamp: usize,
+    pub analysis_time: f64,
+    pub input_process: String,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SpotifyAudioAnalysisSections {
+    pub start: f64,
+    pub duration: f64,
+    pub confidence: f64,
+    pub loudness: f64,
+    pub tempo_confidence: f64,
+    pub key: usize,
+    pub key_confidence: f64,
+    pub mode: usize,
+    pub mode_confidence: f64,
+    pub time_signature: usize,
+    pub time_signature_confidence: f64,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SpotifyAudioAnalysisSegments {
+    pub start: f64,
+    pub duration: f64,
+    pub confidence: f64,
+    pub loudness_start: f64,
+    pub loudness_max_time: f64,
+    pub loudness_max: f64,
+    pub loudness_end: Option<f64>,
+    pub pitches: Vec<f64>,
+    pub timbre: Vec<f64>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SpotifyAudioAnalysisTrack {
+    pub num_samples: Option<usize>,
+    pub duration: f64,
+    pub sample_md5: Option<String>,
+    pub offset_seconds: usize,
+    pub window_seconds: usize,
+    pub analysis_sample_rate: usize,
+    pub analysis_channels: usize,
+    pub end_of_fade_in: f64,
+    pub start_of_fade_out: f64,
+    pub loudness: f64,
+    pub tempo: f64,
+    pub tempo_confidence: f64,
+    pub time_signature: usize,
+    pub time_signature_confidence: f64,
+    pub key: usize,
+    pub key_confidence: f64,
+    pub mode: usize,
+    pub mode_confidence: f64,
+    pub codestring: String,
+    pub code_version: f64,
+    pub echoprintstring: String,
+    pub echoprint_version: f64,
+    pub synchstring: String,
+    pub synch_version: f64,
+    pub rhythmstring: String,
+    pub rhythm_version: f64,
+}
+
+impl fmt::Display for SpotifyAudioAnalysisTrack {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "num_samples: {},
+        duration: {},
+        offset_seconds: {},
+        window_seconds: {},
+        analysis_sample_rate: {},
+        analysis_channels: {},
+        end_of_fade_in: {},
+        start_of_fade_out: {},
+        loudness: {},
+        tempo: {},
+        tempo_confidence: {},
+        time_signature: {},
+        time_signature_confidence: {},
+        key: {},
+        key_confidence: {},
+        mode: {},
+        mode_confidence: {},
+        code_version: {},
+        echoprint_version: {},
+        synch_version: {},
+        rhythm_version: {}", 
+        self.num_samples.unwrap(), 
+        self.duration, 
+        self.offset_seconds, 
+        self.window_seconds, 
+        self.analysis_sample_rate, 
+        self.analysis_channels, 
+        self.end_of_fade_in, 
+        self.start_of_fade_out, 
+        self.loudness, 
+        self.tempo, 
+        self.tempo_confidence, 
+        self.time_signature, 
+        self.time_signature_confidence, 
+        self.key, 
+        self.key_confidence, 
+        self.mode, 
+        self.mode_confidence, 
+        self.code_version, 
+        self.echoprint_version, 
+        self.synch_version, 
+        self.rhythm_version)
+    }
+}
+
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SpotifyAudioAnalysis {
+    pub bars: Vec<SpotifyAudioAnalysisFeature>,
+    pub beats: Vec<SpotifyAudioAnalysisFeature>,
+    pub meta: SpotifyAudioAnalysisMeta,
+    pub sections: Vec<SpotifyAudioAnalysisSections>,
+    pub segments: Vec<SpotifyAudioAnalysisSegments>,
+    pub tatums: Vec<SpotifyAudioAnalysisFeature>,
+    pub track: SpotifyAudioAnalysisTrack,
+}
+
+impl fmt::Display for SpotifyAudioAnalysis {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "meta: {:?}\ntrack: {}", self.meta, self.track)
+    }
+}
