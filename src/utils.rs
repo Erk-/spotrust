@@ -42,9 +42,9 @@ pub fn get_mode(mode: usize) -> Option<String> {
     }
 }
 
-pub fn get_largest_image(imgvec: Vec<SpotifyImage>) -> Option<SpotifyImage> {
+pub fn get_largest_image(imgvec: &Vec<SpotifyImage>) -> Option<SpotifyImage> {
     if imgvec.len() > 0 {
-        return Some(imgvec[0].clone());
+        return Some(imgvec[0]);
     }
     else {
         None
