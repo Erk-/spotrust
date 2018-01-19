@@ -56,6 +56,7 @@ pub fn track_get(client: &reqwest::Client, t: SpotifyToken, id: SpotifyURI) -> S
         Ok(resp) => resp,
         Err(why) => panic!("Err: {}", why),
     };
+    //println!("{:?}", &resp.text());
     let jres: SpotifyTrackFull = resp.json().unwrap();
     jres
 }

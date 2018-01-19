@@ -353,9 +353,9 @@ pub struct SpotifyTrackFull {
     pub external_urls: SpotifyExternalUrls,
     pub href: String,
     pub id: String,
-    pub is_playable: bool,
-    pub linked_from: SpotifyTrackLink,
-    pub restrictions: SpotifyRestrictions,
+    //pub is_playable: bool,                 // Is apperently not real?
+    //pub linked_from: SpotifyTrackLink,     // niether is this?
+    //pub restrictions: SpotifyRestrictions, // or this?
     pub name: String,
     pub popularity: usize,
     pub preview_url: Option<String>,
