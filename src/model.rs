@@ -539,6 +539,7 @@ pub struct SpotifyAudioAnalysisTrack {
     pub rhythm_version: f64,
 }
 
+/// Prints the struct out without the giant binary strings.
 impl fmt::Display for SpotifyAudioAnalysisTrack {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "num_samples: {},
@@ -598,6 +599,7 @@ pub struct SpotifyAudioAnalysis {
     pub track: SpotifyAudioAnalysisTrack,
 }
 
+/// Leave out the giant arrays of SpotifyAudioAnalysisFeature and SpotifyAudioAnalysisSegments.
 impl fmt::Display for SpotifyAudioAnalysis {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "meta: {:?}\ntrack: {}", self.meta, self.track)
