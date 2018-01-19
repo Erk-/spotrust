@@ -1,6 +1,6 @@
 [package]
 name = "spotrust"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Valdemar Erk <valdemar@erk.io>"]
 license = "ISC"
 documentation = "https://docs.rs/spotrust"
