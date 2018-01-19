@@ -1,19 +1,25 @@
 use model::*;
+use regex::Regex;
 
-pub fn uri_from_str(s: String) -> SpotifyURI {
-    let v: Vec<&str> = s.split(':').collect();
-    let t: UriType = match v[1] {
-        "track" => UriType::Track,
-        "album" => UriType::Album,
-        "playlist" => UriType::Playlist,
-        "artist" => UriType::Artist,
-        _ => UriType::Other,
-    };
-    let ret = SpotifyURI {
-        uri: String::from(v[2]),
-        uri_type: t,
-    };
-    ret
+pub fn uri_from_str(s: String) -> Option<SpotifyURI> {
+    let re = Regex::new(r"spotify:[a-z]+:[a-zA-Z0-9]+").unwrap();
+    match re.is_match(&s) {
+        true => {
+            let v: Vec<&str> = s.split(':').collect();
+            let t: UriType = match v[1] {
+                "track" => UriType::Track,
+                "album" => UriType::Album,
+                "playlist" => UriType::Playlist,
+                "artist" => UriType::Artist,
+                 _ => UriType::Other,
+            };
+            let ret = SpotifyURI {
+                uri: String::from(v[2]),
+                uri_type: t,
+            };
+            Some(ret)},
+        false => None,
+    }
 }
 
 pub fn get_key(key: usize) -> Option<String> {
