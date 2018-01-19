@@ -6,6 +6,9 @@ license = "ISC"
 documentation = "https://docs.rs/spotrust"
 homepage = "https://github.com/Erk-/spotrust"
 repository = "https://github.com/Erk-/spotrust.git"
+readme = "./README.md"
+keywords = ["spotify", "web api", "api", "music"]
+description = "A wrapper for the spotify web api."
 
 [dependencies]
 reqwest = "0.8.2"
