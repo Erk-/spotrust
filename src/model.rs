@@ -214,7 +214,7 @@ pub struct SpotifyFollowers {
 // DONE https://developer.spotify.com/web-api/object-model/#image-object
 #[allow(dead_code)]
 #[allow(non_snake_case)]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Copy, Clone, Debug, Deserialize)]
 pub struct SpotifyImage {
     pub height: usize,
     pub url: String,
