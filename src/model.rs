@@ -36,6 +36,7 @@ pub enum UriType {
 #[derive(Clone, Debug)]
 pub struct SpotifyURI {
     pub uri: String,
+    pub uri_raw: String,
     pub uri_type: UriType,
 }
 
@@ -225,11 +226,11 @@ pub struct SpotifyImage {
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyPagingTracks {
     pub href: String,
-    pub items: Vec<SpotifyTrackSimplified>,
+    pub items: Vec<SpotifyPlaylistTrack>,
     pub limit: usize,
-    pub next: String,
+    pub next: Option<String>,
     pub offset: usize,
-    pub previous: String,
+    pub previous: Option<String>,
     pub total: usize,
 }
 
@@ -237,7 +238,7 @@ pub struct SpotifyPagingTracks {
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyCursorBasedPagingTracks {
     pub href: String,
-    pub items: Vec<SpotifyTrackSimplified>,
+    pub items: Vec<SpotifyPlaylistTrack>,
     pub limit: usize,
     pub next: String,
     pub cursors: SpotifyCursor,
@@ -289,7 +290,8 @@ pub struct SpotifyPlaylistSimplified {
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyPlaylistTrack {
     pub added_at: String,
-    pub added_by: SpotifyUserPublic,
+    #[serde(skip_deserializing)]
+    pub added_by: String,
     pub is_local: bool,
     pub track: SpotifyTrackFull,
 }

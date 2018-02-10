@@ -5,6 +5,7 @@ pub fn uri_from_str(s: String) -> Option<SpotifyURI> {
     let re = Regex::new(r"spotify:[a-z]+:[a-zA-Z0-9]+").unwrap();
     match re.is_match(&s) {
         true => {
+            let raw = s.clone();
             let v: Vec<&str> = s.split(':').collect();
             let t: UriType = match v[1] {
                 "track" => UriType::Track,
@@ -15,6 +16,7 @@ pub fn uri_from_str(s: String) -> Option<SpotifyURI> {
             };
             let ret = SpotifyURI {
                 uri: String::from(v[2]),
+                uri_raw: raw,
                 uri_type: t,
             };
             Some(ret)},

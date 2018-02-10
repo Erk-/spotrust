@@ -28,8 +28,10 @@ fn construct_headers_token(t: SpotifyToken) -> Headers {
 }
 
 pub mod track;
-pub use track::*;
+pub mod playlist;
 
+pub use track::*;
+pub use playlist::*;
 
 /*
 fn main() {
