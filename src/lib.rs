@@ -1,13 +1,13 @@
-extern crate reqwest;
 extern crate base64;
 extern crate regex;
+extern crate reqwest;
 
+extern crate serde;
 #[macro_use]
 extern crate serde_derive;
-extern crate serde;
 extern crate serde_json;
 
-use reqwest::header::{Headers, ContentType, Bearer, Authorization}; // UserAgent, 
+use reqwest::header::{Authorization, Bearer, ContentType, Headers}; // UserAgent,
 
 //use std::time::{Duration, SystemTime};
 
@@ -20,10 +20,11 @@ pub use token::*;
 pub use utils::*;
 
 fn construct_headers_token(t: SpotifyToken) -> Headers {
-    let tok = token_update(t);
     let mut headers = Headers::new();
     headers.set(ContentType::json());
-    headers.set(Authorization(Bearer { token: tok.access_token.to_owned() }));
+    headers.set(Authorization(Bearer {
+        token: t.access_token.to_owned(),
+    }));
     headers
 }
 
