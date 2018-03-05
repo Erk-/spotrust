@@ -43,7 +43,7 @@ pub struct SpotifyURI {
 // https://developer.spotify.com/web-api/object-model/
 
 // DONE https://developer.spotify.com/web-api/object-model/#album-object-full
-#[allow(dead_code)] 
+#[allow(dead_code)]
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyAlbumFull {
@@ -63,8 +63,7 @@ pub struct SpotifyAlbumFull {
     pub release_date: String,
     pub release_date_precision: String,
     pub tracks: SpotifyPagingTracks,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -81,8 +80,7 @@ pub struct SpotifyAlbumSimplified {
     pub id: String,
     pub images: Vec<SpotifyImage>,
     pub name: String,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -99,8 +97,7 @@ pub struct SpotifyArtistFull {
     pub images: Vec<SpotifyImage>,
     pub name: String,
     pub popularity: usize,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -113,8 +110,7 @@ pub struct SpotifyArtistSimplified {
     pub href: String,
     pub id: String,
     pub name: String,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -138,8 +134,7 @@ pub struct SpotifyAudioFeatures {
     pub tempo: f64,
     pub time_signature: usize,
     pub track_href: String,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
     pub valence: f64,
 }
@@ -157,7 +152,7 @@ pub struct SpotifyCategory {
     pub href: String,
     pub icons: Vec<SpotifyImage>,
     pub id: String,
-    pub name: String
+    pub name: String,
 }
 
 // DONE https://developer.spotify.com/web-api/object-model/#copyright-object
@@ -165,8 +160,7 @@ pub struct SpotifyCategory {
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyCopyright {
     pub text: String,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
 }
 
 // DONE https://developer.spotify.com/web-api/object-model/#cursor-object
@@ -261,8 +255,7 @@ pub struct SpotifyPlaylistFull {
     pub public: Option<bool>,
     pub snapshot_id: String,
     pub tracks: SpotifyPagingTracks,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -280,8 +273,7 @@ pub struct SpotifyPlaylistSimplified {
     pub public: Option<bool>,
     pub snapshot_id: String,
     pub tracks: SpotifyPagingTracks,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -290,8 +282,7 @@ pub struct SpotifyPlaylistSimplified {
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyPlaylistTrack {
     pub added_at: String,
-    #[serde(skip_deserializing)]
-    pub added_by: String,
+    #[serde(skip_deserializing)] pub added_by: String,
     pub is_local: bool,
     pub track: SpotifyTrackFull,
 }
@@ -313,8 +304,7 @@ pub struct SpotifyRecommendationsSeed {
     pub href: String,
     pub id: String,
     pub initialPoolSize: usize,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
 }
 
 // DONE https://developer.spotify.com/web-api/object-model/#saved-track-object
@@ -330,7 +320,7 @@ pub struct SpotifySavedTrack {
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifySavedAlbum {
     added_at: String,
-    album: SpotifyAlbumFull
+    album: SpotifyAlbumFull,
 }
 
 // UNDUCUMENTED https://developer.spotify.com/web-api/object-model/#track-object-full
@@ -362,8 +352,7 @@ pub struct SpotifyTrackFull {
     pub popularity: usize,
     pub preview_url: Option<String>,
     pub track_number: usize,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -390,8 +379,7 @@ pub struct SpotifyTrackSimplified {
     pub name: String,
     pub preview_url: Option<String>,
     pub track_number: usize,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -402,8 +390,7 @@ pub struct SpotifyTrackLink {
     pub external_urls: SpotifyExternalUrls,
     pub href: String,
     pub id: String,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -421,8 +408,7 @@ pub struct SpotifyUserPrivate {
     pub id: String,
     pub images: Vec<SpotifyImage>,
     pub product: String,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -436,8 +422,7 @@ pub struct SpotifyUserPublic {
     pub href: String,
     pub id: String,
     pub images: Vec<SpotifyImage>,
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub uri: String,
 }
 
@@ -447,15 +432,14 @@ pub struct SpotifyUserPublic {
 pub struct SpotifyPlayHistory {
     pub track: SpotifyTrackSimplified,
     pub played_at: String,
-    pub context: SpotifyContext
+    pub context: SpotifyContext,
 }
 
 // DONE https://developer.spotify.com/web-api/object-model/#context-object
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyContext {
-    #[serde(rename = "type")]
-    pub type_: String,
+    #[serde(rename = "type")] pub type_: String,
     pub href: String,
     pub external_urls: SpotifyExternalUrls,
     pub uri: String,
@@ -544,7 +528,9 @@ pub struct SpotifyAudioAnalysisTrack {
 /// Prints the struct out without the giant binary strings.
 impl fmt::Display for SpotifyAudioAnalysisTrack {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "num_samples: {},
+        write!(
+            f,
+            "num_samples: {},
         duration: {},
         offset_seconds: {},
         window_seconds: {},
@@ -564,31 +550,31 @@ impl fmt::Display for SpotifyAudioAnalysisTrack {
         code_version: {},
         echoprint_version: {},
         synch_version: {},
-        rhythm_version: {}", 
-        self.num_samples.unwrap(), 
-        self.duration, 
-        self.offset_seconds, 
-        self.window_seconds, 
-        self.analysis_sample_rate, 
-        self.analysis_channels, 
-        self.end_of_fade_in, 
-        self.start_of_fade_out, 
-        self.loudness, 
-        self.tempo, 
-        self.tempo_confidence, 
-        self.time_signature, 
-        self.time_signature_confidence, 
-        self.key, 
-        self.key_confidence, 
-        self.mode, 
-        self.mode_confidence, 
-        self.code_version, 
-        self.echoprint_version, 
-        self.synch_version, 
-        self.rhythm_version)
+        rhythm_version: {}",
+            self.num_samples.unwrap(),
+            self.duration,
+            self.offset_seconds,
+            self.window_seconds,
+            self.analysis_sample_rate,
+            self.analysis_channels,
+            self.end_of_fade_in,
+            self.start_of_fade_out,
+            self.loudness,
+            self.tempo,
+            self.tempo_confidence,
+            self.time_signature,
+            self.time_signature_confidence,
+            self.key,
+            self.key_confidence,
+            self.mode,
+            self.mode_confidence,
+            self.code_version,
+            self.echoprint_version,
+            self.synch_version,
+            self.rhythm_version
+        )
     }
 }
-
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct SpotifyAudioAnalysis {
